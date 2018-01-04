@@ -1,7 +1,19 @@
-#Импортируем dataset MNIST 
-
-from __future__ import print_function
-from tensorflow.examples.tutorials.mnist import input_data
-mnist = input_data.read_data_sets("/tmp/data/", one_hot=False)
-import tensorflow as tf
 import numpy as np
+
+number_of_neurons = int(input("Please, enter the number of neurons "))
+number_of_layers = int(input("Please, enter the number of layers "))
+
+class NeuralNet():
+
+    def __init__(self, hidden_size=4, max_iterations=2000,
+                 learning_rate=0.15):
+        self.hidden_size = hidden_size
+        self.max_iterations = max_iterations
+        self.learning_rate = learning_rate
+        self.mse_limit = 0.01
+
+    def tanh(self, x):
+            return (np.exp(2*x)-1)/(np.exp(2*x)+1)
+
+    def tanh_der(self, y):
+            return 4/((np.exp(y)+np.exp(-y))**2)
